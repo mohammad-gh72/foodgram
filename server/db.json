@@ -1,0 +1,474 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Spaghetti Carbonara",
+      "recipe": "Boil pasta, mix with eggs, pancetta, Parmesan, and pepper.",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "thumbnail": "https://placehold.co/600x400?text=Spaghetti+Carbonara",
+      "images": [
+        "https://babaft.com/wp-content/uploads/2022/04/5-1024x683.jpg",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 101,
+        "username": "ChefMario",
+        "profilePicture": "https://placehold.co/100x100?text=CM"
+      },
+      "ratings": [
+        { "userId": 1, "stars": 5 },
+        { "userId": 2, "stars": 4 },
+        { "userId": 3, "stars": 5 }
+      ],
+      "comments": [
+        {
+          "id": 101,
+          "text": "wow!",
+          "comments": []
+        },
+        {
+          "id": 101,
+          "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ",
+          "comments": [
+            {
+              "id": 102,
+              "text": "Glad you liked it!",
+              "comments": [
+                {
+                  "id": 103,
+                  "text": "What pancetta brand did you use?",
+                  "comments": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Greek Salad",
+      "recipe": "Mix cucumber, tomatoes, olives, feta, olive oil, oregano.",
+      "description": "Fresh salad with Mediterranean flavors.",
+      "thumbnail": "https://placehold.co/600x400?text=Greek+Salad",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://www.jowhareh.com/images/Jowhareh/galleries_6/poster_de4803fd-78f0-4fd7-ba55-42ce47e1a328.jpeg",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 102,
+        "username": "MediterraneanVibes",
+        "profilePicture": "https://placehold.co/100x100?text=MV"
+      },
+      "ratings": [
+        { "userId": 4, "stars": 3 },
+        { "userId": 5, "stars": 4 }
+      ],
+      "comments": [
+        {
+          "id": 201,
+          "text": "Very refreshing!",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Chicken Curry",
+      "recipe": "Simmer chicken in spiced sauce with onions and garlic.",
+      "description": "Spicy Indian-style chicken curry.",
+      "thumbnail": "https://placehold.co/600x400?text=Chicken+Curry",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 103,
+        "username": "SpiceMaster",
+        "profilePicture": "https://placehold.co/100x100?text=SM"
+      },
+      "ratings": [],
+      "comments": [
+        {
+          "id": 301,
+          "text": "Amazing depth of flavor!",
+          "comments": [
+            {
+              "id": 302,
+              "text": "Did you use garam masala?",
+              "comments": [
+                {
+                  "id": 303,
+                  "text": "Yes, a homemade one!",
+                  "comments": [
+                    {
+                      "id": 304,
+                      "text": "That’s probably why it’s so good.",
+                      "comments": [
+                        {
+                          "id": 305,
+                          "text": "Thanks! Making your own spice mix is the secret.",
+                          "comments": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Pancakes",
+      "recipe": "Mix flour, eggs, milk; cook on hot griddle.",
+      "description": "Soft and fluffy breakfast pancakes.",
+      "thumbnail": "https://placehold.co/600x400?text=Pancakes",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 104,
+        "username": "BreakfastLover",
+        "profilePicture": "https://placehold.co/100x100?text=BL"
+      },
+      "ratings": [{ "userId": 6, "stars": 5 }],
+      "comments": []
+    },
+    {
+      "id": 5,
+      "title": "Beef Tacos",
+      "recipe": "Season and cook beef; serve in tortillas with toppings.",
+      "description": "Mexican-style tacos with savory beef.",
+      "thumbnail": "https://placehold.co/600x400?text=Beef+Tacos",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 105,
+        "username": "TacoFan",
+        "profilePicture": "https://placehold.co/100x100?text=TF"
+      },
+      "ratings": [],
+      "comments": [
+        {
+          "id": 501,
+          "text": "Great for parties!",
+          "comments": [
+            {
+              "id": 502,
+              "text": "Do you use corn or flour tortillas?",
+              "comments": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Avocado Toast",
+      "recipe": "Mash avocado on toast with salt and pepper.",
+      "description": "Quick healthy breakfast.",
+      "thumbnail": "https://placehold.co/600x400?text=Avocado+Toast",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 106,
+        "username": "HealthyBites",
+        "profilePicture": "https://placehold.co/100x100?text=HB"
+      },
+      "ratings": [],
+      "comments": []
+    },
+    {
+      "id": 7,
+      "title": "Sushi Rolls",
+      "recipe": "Wrap rice and fish in seaweed, slice into rolls.",
+      "description": "Fresh and light Japanese-style sushi.",
+      "thumbnail": "https://placehold.co/600x400?text=Sushi+Rolls",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 107,
+        "username": "SushiChef",
+        "profilePicture": "https://placehold.co/100x100?text=SC"
+      },
+      "ratings": [
+        { "userId": 7, "stars": 4 },
+        { "userId": 8, "stars": 5 },
+        { "userId": 9, "stars": 5 }
+      ],
+      "comments": [
+        {
+          "id": 701,
+          "text": "Harder than I thought!",
+          "comments": [
+            {
+              "id": 702,
+              "text": "Practice makes perfect.",
+              "comments": [
+                {
+                  "id": 703,
+                  "text": "Totally! My first rolls were ugly too.",
+                  "comments": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Fruit Smoothie",
+      "recipe": "Blend fruits and milk or yogurt until smooth.",
+      "description": "Refreshing and nutritious drink.",
+      "thumbnail": "https://placehold.co/600x400?text=Fruit+Smoothie",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 108,
+        "username": "SmoothieKing",
+        "profilePicture": "https://placehold.co/100x100?text=SK"
+      },
+      "ratings": [],
+      "comments": []
+    },
+    {
+      "id": 9,
+      "title": "Lasagna",
+      "recipe": "Layer pasta sheets with meat sauce, béchamel, and cheese.",
+      "description": "Hearty Italian classic.",
+      "thumbnail": "https://placehold.co/600x400?text=Lasagna",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 109,
+        "username": "NonnaRosa",
+        "profilePicture": "https://placehold.co/100x100?text=NR"
+      },
+      "ratings": [
+        { "userId": 10, "stars": 5 },
+        { "userId": 11, "stars": 5 },
+        { "userId": 12, "stars": 4 }
+      ],
+      "comments": [
+        {
+          "id": 901,
+          "text": "Takes time but so worth it!",
+          "comments": [
+            {
+              "id": 902,
+              "text": "Agreed. Family favorite!",
+              "comments": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Veggie Stir Fry",
+      "recipe": "Stir-fry vegetables with soy sauce and garlic.",
+      "description": "Quick and healthy dinner option.",
+      "thumbnail": "https://placehold.co/600x400?text=Veggie+Stir+Fry",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 110,
+        "username": "VeggieLover",
+        "profilePicture": "https://placehold.co/100x100?text=VL"
+      },
+      "ratings": [],
+      "comments": []
+    },
+    {
+      "id": 11,
+      "title": "Chocolate Cake",
+      "recipe": "Mix cocoa, flour, sugar, butter; bake and frost.",
+      "description": "Rich and moist chocolate cake.",
+      "thumbnail": "https://placehold.co/600x400?text=Chocolate+Cake",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 111,
+        "username": "SweetTooth",
+        "profilePicture": "https://placehold.co/100x100?text=ST"
+      },
+      "ratings": [{ "userId": 13, "stars": 5 }],
+      "comments": [
+        {
+          "id": 1101,
+          "text": "My favorite dessert!",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Ramen",
+      "recipe": "Broth, noodles, meat, veggies, egg.",
+      "description": "Authentic Japanese ramen bowl.",
+      "thumbnail": "https://placehold.co/600x400?text=Ramen",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 112,
+        "username": "RamenMaster",
+        "profilePicture": "https://placehold.co/100x100?text=RM"
+      },
+      "ratings": [],
+      "comments": [
+        {
+          "id": 1201,
+          "text": "Could eat this every day.",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Falafel Wrap",
+      "recipe": "Wrap fried chickpea balls with veggies and tahini in flatbread.",
+      "description": "Middle Eastern street food delight.",
+      "thumbnail": "https://placehold.co/600x400?text=Falafel+Wrap",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 113,
+        "username": "StreetFoodie",
+        "profilePicture": "https://placehold.co/100x100?text=SF"
+      },
+      "ratings": [],
+      "comments": []
+    },
+    {
+      "id": 14,
+      "title": "Banana Bread",
+      "recipe": "Mash bananas into batter and bake.",
+      "description": "Sweet and moist quick bread.",
+      "thumbnail": "https://placehold.co/600x400?text=Banana+Bread",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 114,
+        "username": "BakerJane",
+        "profilePicture": "https://placehold.co/100x100?text=BJ"
+      },
+      "ratings": [],
+      "comments": []
+    },
+    {
+      "id": 15,
+      "title": "Grilled Cheese",
+      "recipe": "Melt cheese between buttered bread slices on a pan.",
+      "description": "Comfort food classic.",
+      "thumbnail": "https://placehold.co/600x400?text=Grilled+Cheese",
+      "images": [
+        "https://placehold.co/600x400?text=image1",
+        "https://placehold.co/600x400?text=image2",
+        "https://placehold.co/600x400?text=image3"
+      ],
+      "user": {
+        "userId": 115,
+        "username": "ComfortCook",
+        "profilePicture": "https://placehold.co/100x100?text=CC"
+      },
+      "ratings": [
+        { "userId": 14, "stars": 4 },
+        { "userId": 15, "stars fueling": 5 }
+      ],
+      "comments": [
+        {
+          "id": 1501,
+          "text": "Simple but tasty.",
+          "comments": [
+            {
+              "id": 1502,
+              "text": "Always a crowd-pleaser.",
+              "comments": [
+                {
+                  "id": 1503,
+                  "text": "I add some ham inside too.",
+                  "comments": [
+                    {
+                      "id": 1504,
+                      "text": "Great idea!",
+                      "comments": [
+                        {
+                          "id": 1505,
+                          "text": "And a bit of mustard is nice.",
+                          "comments": [
+                            {
+                              "id": 1506,
+                              "text": "Must try that!",
+                              "comments": [
+                                {
+                                  "id": 1507,
+                                  "text": "Don’t forget the crispy crusts.",
+                                  "comments": [
+                                    {
+                                      "id": 1508,
+                                      "text": "The crispier the better.",
+                                      "comments": [
+                                        {
+                                          "id": 1509,
+                                          "text": "Exactly. Butter generously!",
+                                          "comments": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
