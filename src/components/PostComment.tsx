@@ -1,12 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function PostComment({
   bgColor,
   width = 100,
   submitFn,
   accessToken,
-  postId,
+  id,
 }) {
   const [comment, setComment] = useState("");
 
@@ -24,7 +25,7 @@ export default function PostComment({
   function submitComment(e) {
     e.preventDefault();
     if (!comment.trim()) return toast.error("Comment cannot be empty");
-    mutate({ token: accessToken, postId, comment: { text: comment } });
+    mutate({ token: accessToken, id, comment: { text: comment } });
   }
 
   return (

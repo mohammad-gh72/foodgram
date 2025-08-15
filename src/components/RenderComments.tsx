@@ -1,7 +1,9 @@
 import { useState } from "react";
 import PostComment from "./PostComment";
+import { postReply } from "src/services/postCommentAndReply";
+import { useAuth } from "src/features/auth/AuthContext";
 
-function Comments({ comments }) {
+function RenderComments({ comments }) {
   return (
     <div className="flex-1  origin-left  font-medium max-w-[100%]">
       {comments?.map((comment) => (
@@ -11,11 +13,12 @@ function Comments({ comments }) {
   );
 }
 
-export default Comments;
+export default RenderComments;
 
 function RecursiveComment({ comment }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isReplyOpen, setIsReplyOpen] = useState(false);
+  const { state: authState } = useAuth();
 
   function showExpandBtn(comment) {
     if (comment?.comments?.length === 0) return;
@@ -74,7 +77,15 @@ function RecursiveComment({ comment }) {
           </button>
         </div>
         <div className="mt-4 w-[60%]">
-          {isReplyOpen && <PostComment width={70} bgColor="bg-amber-50" />}
+          {isReplyOpen && (
+            <PostComment
+              submitFn={postReply}
+              accessToken={authState.accessToken}
+              id={comment._id}
+              width={70}
+              bgColor="bg-amber-50"
+            />
+          )}
         </div>
       </div>
 

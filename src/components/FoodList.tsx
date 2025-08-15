@@ -1,14 +1,14 @@
 import { getPosts } from "@services";
-import PostItem from "./PostItem";
+import FoodItem from "./FoodItem";
 import { useCustomQueryHook } from "../customHooks/customQuerHook";
-function PostsList() {
+function FoodList() {
   const { isLoading, error, data } = useCustomQueryHook("posts", getPosts);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-16 w-full  ">
-      <PostItem data={data} />
+    <div className="flex flex-col justify-center items-center gap-16 w-full ">
+      <FoodItem data={data} />
     </div>
   );
 }
 
-export default PostsList;
+export default FoodList;

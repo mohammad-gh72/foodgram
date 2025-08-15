@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import foodmarginStyle from "../styles/foodmarginStyle.module.css";
-import Comments from "./Comments";
+import RenderComments from "./RenderComments";
 import { createPortal } from "react-dom";
-import ImageModal from "./ImageModal";
+import ImageModal from "./ImageSliderModal";
 import PostComment from "./PostComment";
 import { useAuth } from "src/features/auth/AuthContext";
-import postComment from "src/services/postCommentAndReplie";
+import { postComment } from "src/services/postCommentAndReply";
 
-function PostItem({ data }) {
+function FoodItem({ data }) {
   return (
     <>
       {data?.posts?.map((post) => {
@@ -15,18 +15,22 @@ function PostItem({ data }) {
           <div
             style={{ boxShadow: "0px 2px 7px -2px rgba(0,0,0,0.28)" }}
             key={post._id}
-            className={`${foodmarginStyle.foodmargin} overflow-hidden   max-h-[80vh] relative z-0 grid grid-cols-[1fr_auto] gap-6 bg-[#f5f5f5] p-8 w-[80%] rounded-lg shadow-md`}
+            className={`${foodmarginStyle.foodmargin} grid grid-cols-[1fr_auto] gap-6 bg-[#f5f5f5] p-8 w-[80%] rounded-lg shadow-md`}
           >
             <PostTextContent post={post} />
             <PostThumbnail post={post} />
-            <CommentsSection post={post} />
+            {/* Comments section always full width when open */}
+            <div className="col-span-2">
+              <CommentsSection post={post} />
+            </div>
           </div>
         );
       })}
     </>
   );
 }
-export default PostItem;
+
+export default FoodItem;
 
 function PostTextContent({ post }) {
   return (
@@ -97,18 +101,28 @@ function CommentsSection({ post }) {
 
   if (!isOpen) {
     return (
-      <span
-        role="button"
-        className="w-fit mt-4 text-blue-500 cursor-pointer hover:scale-110 transition-transform duration-150 font-medium"
-        onClick={() => SetIsOpen(true)}
-      >
-        See Comments
-      </span>
+      <>
+        <hr className="mb-8 mt-4 opacity-9" />
+        <span
+          role="button"
+          className="w-fit mt-4 text-blue-500 cursor-pointer hover:scale-110 transition-transform duration-150 font-medium"
+          onClick={() => SetIsOpen(true)}
+        >
+          Comments&nbsp;
+          <span
+            style={{ fontSize: "14px" }}
+            className={` ${post.comments.length > 0 ? "text-[#4BAE4F]" : "text-gray-300"}`}
+          >
+            ({post.comments.length})
+          </span>
+        </span>
+      </>
     );
   }
 
   return (
     <>
+      <hr className="mb-8 mt-4 opacity-9" />
       <span
         role="button"
         className="w-fit mt-4 text-blue-500 cursor-pointer hover:scale-110 transition-transform duration-150 font-medium"
@@ -116,16 +130,23 @@ function CommentsSection({ post }) {
       >
         Close Comments
       </span>
-      <div className="max-h-[20%] overflow-y-scroll flex flex-col justify-between col-span-2 w-full bg-[#FFEDD4] p-4 min-h-[250px] rounded-lg mt-4 shadow-sm">
+      <div
+        className="flex flex-col bg-[#FFEDD4] p-3 rounded-lg shadow-sm mt-4"
+        style={{
+          height: "450px", // ✅ a little taller for more visible comments
+        }}
+      >
         {state.user && (
           <PostComment
             bgColor="bg-white"
             submitFn={postComment}
             accessToken={state.accessToken}
-            postId={post._id}
+            id={post._id}
           />
         )}
-        <Comments comments={post.comments} />
+        <div className="flex-1 overflow-y-auto mt-2">
+          <RenderComments comments={post.comments} />
+        </div>
         {post?.comments.length === 0 && (
           <div className="bg-red-400 rounded-3xl text-white p-2 w-full flex justify-center items-center text-sm font-medium shadow">
             No comments yet on this post

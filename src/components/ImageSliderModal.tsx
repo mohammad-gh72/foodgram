@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-function ImageModal({ imgArr, closeModal }) {
+function ImageSliderModal({ imgArr, closeModal }) {
   return (
     <div
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
@@ -15,14 +15,14 @@ function ImageModal({ imgArr, closeModal }) {
       "
     >
       <CloseImageModal closeModal={closeModal} />
-      <RenderModalImage imgArr={imgArr} />
+      <RenderImageModal imgArr={imgArr} />
     </div>
   );
 }
 
-export default ImageModal;
+export default ImageSliderModal;
 
-function RenderModalImage({ imgArr }) {
+function RenderImageModal({ imgArr }) {
   const [fullscreenImg, setFullscreenImg] = useState(null);
 
   return (
