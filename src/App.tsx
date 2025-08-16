@@ -7,11 +7,15 @@ import Signup from "@pages/Signup";
 import Login from "@pages/Login";
 import { AuthProvider } from "./features/auth/AuthContext";
 import ProtectedRoute from "./features/auth/ProtectedRoute";
-import AddPostModal from "./components/AddPostModal";
-import { createPortal } from "react-dom";
 import { PostProvider } from "./features/post/PostContext";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0, // Queries are considered stale immediately, triggering refetch on any change
+    },
+  },
+});
 const router = createBrowserRouter([
   {
     path: "/",

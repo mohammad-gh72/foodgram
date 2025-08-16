@@ -5,12 +5,17 @@ import { useAuth } from "src/features/auth/AuthContext";
 import z from "zod";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const postSchema = z.object({
   title: z.string().min(6, "Title must be at least 6 characters"),
   description: z.string().min(10, "Description must be at least 10 characters"),
-  recipe: z.string().min(10, "Recipe must be at least 10 characters"),
+  recipe: z
+    .string()
+    .trim()
+    .refine((val) => val.length === 0 || val.length >= 10, {
+      message: "Recipe must be at least 10 characters if provided",
+    }),
 });
 
 function AddPostModal() {
@@ -21,11 +26,14 @@ function AddPostModal() {
     recipe: "",
     description: "",
   });
+  const queryClient = useQueryClient();
 
   const { isPending, mutate } = useMutation({
     mutationFn: postFood,
     onSuccess: () => {
       toast.success("Your post has been submitted");
+      queryClient.invalidateQueries("posts");
+      dispatch({ type: "CloseAddPostModal" });
     },
     onError: (error) => {
       toast.error(error.message);

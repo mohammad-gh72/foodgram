@@ -6,33 +6,81 @@ import ImageModal from "./ImageSliderModal";
 import PostComment from "./PostComment";
 import { useAuth } from "src/features/auth/AuthContext";
 import { postComment } from "src/services/postCommentAndReply";
+import Like from "./Like";
+import { preperImages } from "src/utils/preperImages";
 
 function FoodItem({ data }) {
+  const [isCommentSectionOpen, setIsCommentSectionOpen] = useState({});
+  const { state: authState } = useAuth();
+
+  const toggleComments = (postId) => {
+    setIsCommentSectionOpen((prev) => ({
+      ...prev,
+      [postId]: !prev[postId],
+    }));
+  };
+
   return (
     <>
-      {data?.posts?.map((post) => {
-        return (
-          <div
-            style={{ boxShadow: "0px 2px 7px -2px rgba(0,0,0,0.28)" }}
-            key={post._id}
-            className={`${foodmarginStyle.foodmargin} grid grid-cols-[1fr_auto] gap-6 bg-[#f5f5f5] p-8 w-[80%] rounded-lg shadow-md`}
-          >
+      {data?.posts?.map((post) => (
+        <div
+          key={post._id}
+          className={`${foodmarginStyle.foodmargin} relative bg-[#f5f5f5] p-8 w-[80%] rounded-lg shadow-md flex flex-col`}
+          style={{ boxShadow: "0px 2px 7px -2px rgba(0,0,0,0.28)" }}
+        >
+          {/* Post content */}
+          <div className="grid grid-cols-[1fr_auto] gap-6">
             <PostTextContent post={post} />
             <PostThumbnail post={post} />
-            {/* Comments section always full width when open */}
-            <div className="col-span-2">
-              <CommentsSection post={post} />
-            </div>
           </div>
-        );
-      })}
+
+          <hr className="my-4 opacity-50" />
+
+          {/* Buttons row (fixed) */}
+          <div className="flex justify-between items-center mb-2">
+            <CommentToggle
+              post={post}
+              isOpen={!!isCommentSectionOpen[post._id]}
+              toggle={() => toggleComments(post._id)}
+            />
+            {authState.user && <Like post={post} />}
+          </div>
+
+          {/* Comments section (expand independently) */}
+          {isCommentSectionOpen[post._id] && <CommentsSection post={post} />}
+        </div>
+      ))}
     </>
   );
 }
 
 export default FoodItem;
 
+// -------------------------- CommentToggle --------------------------
+function CommentToggle({ post, isOpen, toggle }) {
+  return (
+    <div
+      onClick={toggle}
+      role="button"
+      className="flex items-center gap-1 cursor-pointer text-blue-400 hover:scale-[1.1] transition-all duration-100"
+    >
+      <span>{isOpen ? "Close Comments" : "Comments"}</span>
+      {!isOpen && (
+        <span
+          className={`text-sm ${
+            post.comments.length > 0 ? "text-[#4BAE4F]" : "text-gray-300"
+          }`}
+        >
+          ({post.comments.length})
+        </span>
+      )}
+    </div>
+  );
+}
+
+// -------------------------- PostTextContent --------------------------
 function PostTextContent({ post }) {
+  console.log(post.recipe);
   return (
     <div>
       <h2 className="bg-[#FEECEF] p-4 rounded-lg text-black w-[80%] text-lg font-bold capitalize mb-8 shadow-sm">
@@ -49,26 +97,27 @@ function PostTextContent({ post }) {
         </div>
       </div>
       <div>
-        <h3 className="bg-red-200 p-2 w-fit rounded-lg text-black mt-8 mb-2 shadow-sm">
-          Recipe
-        </h3>
-        <ul className="list-disc list-inside text-gray-800">
-          <li>{post.recipe}</li>
-        </ul>
+        {post.recipe && (
+          <>
+            <h3 className="bg-red-200 p-2 w-fit rounded-lg text-black mt-8 mb-2 shadow-sm">
+              Recipe
+            </h3>
+            <ul className="list-disc list-inside text-gray-800">
+              <li>{post.recipe}</li>
+            </ul>
+          </>
+        )}
       </div>
     </div>
   );
 }
 
+// -------------------------- PostThumbnail --------------------------
 function PostThumbnail({ post }) {
   const [isOpenImageModal, setIsOpenImageModal] = useState(false);
-
+  const preperedThumbnail = preperImages(post.images[0]);
   useEffect(() => {
-    if (!isOpenImageModal) {
-      document.body.style.overflow = "auto";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
+    document.body.style.overflow = isOpenImageModal ? "hidden" : "auto";
   }, [isOpenImageModal]);
 
   function closeModal() {
@@ -81,7 +130,7 @@ function PostThumbnail({ post }) {
         className={`rounded-lg w-[200px] h-[200px] object-cover shadow-md ${
           !post.thumbnail ? "opacity-40" : ""
         }`}
-        src={!post.thumbnail ? "./thmb.jpg" : post.thumbnail}
+        src={preperedThumbnail}
         alt={post.title}
         onClick={() => setIsOpenImageModal(true)}
       />
@@ -95,64 +144,30 @@ function PostThumbnail({ post }) {
   );
 }
 
+// -------------------------- CommentsSection --------------------------
 function CommentsSection({ post }) {
-  const [isOpen, SetIsOpen] = useState(false);
   const { state } = useAuth();
 
-  if (!isOpen) {
-    return (
-      <>
-        <hr className="mb-8 mt-4 opacity-9" />
-        <span
-          role="button"
-          className="w-fit mt-4 text-blue-500 cursor-pointer hover:scale-110 transition-transform duration-150 font-medium"
-          onClick={() => SetIsOpen(true)}
-        >
-          Comments&nbsp;
-          <span
-            style={{ fontSize: "14px" }}
-            className={` ${post.comments.length > 0 ? "text-[#4BAE4F]" : "text-gray-300"}`}
-          >
-            ({post.comments.length})
-          </span>
-        </span>
-      </>
-    );
-  }
-
   return (
-    <>
-      <hr className="mb-8 mt-4 opacity-9" />
-      <span
-        role="button"
-        className="w-fit mt-4 text-blue-500 cursor-pointer hover:scale-110 transition-transform duration-150 font-medium"
-        onClick={() => SetIsOpen(false)}
-      >
-        Close Comments
-      </span>
-      <div
-        className="flex flex-col bg-[#FFEDD4] p-3 rounded-lg shadow-sm mt-4"
-        style={{
-          height: "450px", // ✅ a little taller for more visible comments
-        }}
-      >
-        {state.user && (
-          <PostComment
-            bgColor="bg-white"
-            submitFn={postComment}
-            accessToken={state.accessToken}
-            id={post._id}
-          />
-        )}
-        <div className="flex-1 overflow-y-auto mt-2">
+    <div className="flex flex-col bg-[#FFEDD4] p-3 rounded-lg shadow-sm mt-4 max-h-[450px] overflow-y-auto">
+      {state.user && (
+        <PostComment
+          bgColor="bg-white"
+          submitFn={postComment}
+          accessToken={state.accessToken}
+          id={post._id}
+        />
+      )}
+
+      {post.comments.length > 0 ? (
+        <div className="flex-1 mt-2">
           <RenderComments comments={post.comments} />
         </div>
-        {post?.comments.length === 0 && (
-          <div className="bg-red-400 rounded-3xl text-white p-2 w-full flex justify-center items-center text-sm font-medium shadow">
-            No comments yet on this post
-          </div>
-        )}
-      </div>
-    </>
+      ) : (
+        <div className="bg-red-400 rounded-3xl text-white p-2 w-full flex justify-center items-center text-sm font-medium shadow">
+          No comments yet on this post
+        </div>
+      )}
+    </div>
   );
 }

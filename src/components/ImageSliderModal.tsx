@@ -48,6 +48,7 @@ function RenderImageModal({ imgArr }) {
             //should define the real server domin here first for showing images
             const serverBaseURL = "http://localhost:5000/";
             const imageURL = serverBaseURL + img.replace(/\\/g, "/");
+            console.log(imageURL);
             return (
               <SwiperSlide key={index} className="place-self-center ">
                 <img

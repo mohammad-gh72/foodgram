@@ -29,7 +29,10 @@ function RecursiveComment({ comment }) {
           className="text-blue-500 cursor-pointer "
           onClick={() => setIsOpen(true)}
         >
-          Open Replies
+          Open Replies{" "}
+          <span style={{ fontSize: "12px" }} className="">
+            ({comment?.comments?.length})
+          </span>
         </button>
       );
     }

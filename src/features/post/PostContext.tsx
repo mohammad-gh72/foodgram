@@ -12,7 +12,7 @@ function authReducer(state, action) {
         isAddPostModalOpen: true,
       };
     case "CloseAddPostModal":
-      return { ...state, isAddPostModalOpen: false };
+      return { ...state, isAddPostModalOpen: false, foodImages: [] };
 
     case "AddFoodImage":
       return {
